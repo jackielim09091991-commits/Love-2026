@@ -72,7 +72,34 @@
     </div>
 
     <div id="music-btn">🎵</div>
-    <audio id="bgm" src="bgm.mp3" loop preload="auto"></audio>
+    <audio id="bgm" src="https://music.163.com/song/media/outer/url?id=1383023012.mp3" loop preload="auto"></audio>
+
+<script>
+    // 2. 替换 start 函数，加入“强制唤醒”逻辑
+    function start() {
+        const overlay = document.getElementById('overlay');
+        const audio = document.getElementById('bgm');
+        const btn = document.getElementById('music-btn');
+
+        overlay.style.opacity = '0';
+        setTimeout(() => { overlay.style.display = 'none'; }, 800);
+
+        // 尝试播放
+        audio.play().then(() => {
+            btn.classList.add('rotating');
+            console.log("Success: Music is playing");
+        }).catch(err => {
+            // 如果报错，通常是加载还没完成，我们做一个“静默重试”
+            console.log("Music loading... retrying");
+            const retryPlay = setInterval(() => {
+                audio.play().then(() => {
+                    btn.classList.add('rotating');
+                    clearInterval(retryPlay);
+                });
+            }, 500);
+        });
+    }
+</script>
 
     <div class="swiper">
         <div class="swiper-wrapper">
@@ -134,7 +161,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="polaroid"><img src="https://i.ibb.co/7x4Jmhkq/Whats-App-Image-2026-02-13-at-11-16-40-PM.jpg"></div>
-                <div class="words"><h2>情人节快乐</h2><p>I wanna grow old with you. —— Westlife</p></div>
+                <div class="words"><h2>情人节快乐</h2><p>爱你一辈子</p></div>
             </div>
         </div>
         <div class="footer-tag">LEFT SWIPE TO EXPLORE</div>
@@ -189,3 +216,4 @@
     </script>
 </body>
 </html>
+
