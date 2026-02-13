@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026 Valentine's Memory</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        :root { --accent: #ffb3b3; --bg: #050505; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: var(--bg); color: white; font-family: -apple-system, sans-serif; overflow: hidden; }
+
+        /* 音乐播放状态提示 */
+        #music-btn { position: fixed; top: 20px; right: 20px; z-index: 100; width: 40px; height: 40px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); }
+        .rotating { animation: spin 4s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* 入场遮罩（解决音乐自动播放问题） */
+        #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.5s; }
+        #overlay button { background: none; border: 1px solid var(--accent); color: var(--accent); padding: 10px 25px; border-radius: 20px; font-size: 0.9rem; letter-spacing: 2px; cursor: pointer; }
+
+        .swiper { width: 100%; height: 100vh; }
+        .swiper-slide { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+        
+        .polaroid { background: #fff; padding: 10px 10px 35px 10px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); max-width: 85%; transition: 0.5s; }
+        .polaroid img { width: 100%; height: auto; max-height: 55vh; object-fit: cover; display: block; }
+        
+        .words { margin-top: 35px; text-align: center; width: 85%; }
+        .words h2 { font-weight: 300; font-size: 1.1rem; color: var(--accent); margin: 0; letter-spacing: 2px; }
+        .words p { font-size: 0.8rem; color: #888; margin-top: 8px; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <div id="overlay">
+        <button onclick="start()">开启 2026 限定回忆</button>
+    </div>
+
+    <div id="music-btn">🎵</div>
+    <audio id="bgm" src="https://api.uomg.com/api/rand.music?sort=热歌榜&format=mp3" loop></audio>
+
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/9mFF3cJF/Whats-App-Image-2026-02-13-at-11-16-40-PM-1.jpg"></div>
+                <div class="words"><h2>初见的心动</h2><p>所有的概率论，在遇到你的那一刻都失效了。</p></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/cShRN19d/Whats-App-Image-2026-02-13-at-11-16-40-PM-2.jpg"></div>
+                <div class="words"><h2>你的侧脸</h2><p>比起看风景，我更喜欢在风景里看你。</p></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/4Z11Tc0P/Whats-App-Image-2026-02-13-at-11-16-40-PM-3.jpg"></div>
+                <div class="words"><h2>关于温柔</h2><p>你是我疲惫生活里唯一的解药。</p></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/VpBcftkd/Whats-App-Image-2026-02-13-at-11-16-40-PM-4.jpg"></div>
+                <div class="words"><h2>那些日常</h2><p>平淡的日子，因为有了你才有了名字。</p></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/PzWVtbBJ/Whats-App-Image-2026-02-13-at-11-16-40-PM-5.jpg"></div>
+                <div class="words"><h2>并肩而行</h2><p>不需要终点，只要在你身边就好。</p></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/WvSKmPxt/Whats-App-Image-2026-02-13-at-11-16-40-PM-6.jpg"></div>
+                <div class="words"><h2>光影之间</h2><p>你站在那里，就是我想要记录的永恒。</p></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/KjXbcG49/Whats-App-Image-2026-02-13-at-11-16-40-PM-7.jpg"></div>
+                <div class="words"><h2>小确幸</h2><p>宇宙广阔，但我只想捕捉你的每一个瞬间。</p></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/ZprdBHxw/Whats-App-Image-2026-02-13-at-11-16-40-PM-8.jpg"></div>
+                <div class="words"><h2>专属记忆</h2><p>有些话写在代码里，有些爱藏在眼神里。</p></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/fdJT1vzz/Whats-App-Image-2026-02-13-at-11-16-40-PM-9.jpg"></div>
+                <div class="words"><h2>陪伴</h2><p>最长情的告白，就是和你一起浪费时间。</p></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/jZBWP5Hq/Whats-App-Image-2026-02-13-at-11-16-40-PM-10.jpg"></div>
+                <div class="words"><h2>余生请教</h2><p>我想把所有的美好，都备份在你这里。</p></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/hFjsWsvR/Whats-App-Image-2026-02-13-at-11-16-40-PM-11.jpg"></div>
+                <div class="words"><h2>你是唯一</h2><p>在我的世界里，你永远是最高优先级。</p></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/Rkdk4dk4/Whats-App-Image-2026-02-13-at-11-16-40-PM-12.jpg"></div>
+                <div class="words"><h2>执子之手</h2><p>手心的温度，是我最眷恋的导航。</p></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/LzDBd9dw/Whats-App-Image-2026-02-13-at-11-16-40-PM-13.jpg"></div>
+                <div class="words"><h2>四季是你</h2><p>不管世界如何变迁，我依然为你心动。</p></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/z37Mhsg/Whats-App-Image-2026-02-13-at-11-16-40-PM-14.jpg"></div>
+                <div class="words"><h2>致最亲爱的你</h2><p>谢谢你，让我成为了更好的自己。</p></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="polaroid"><img src="https://i.ibb.co/7x4Jmhkq/Whats-App-Image-2026-02-13-at-11-16-40-PM.jpg"></div>
+                <div class="words"><h2>情人节快乐</h2><p>爱你一辈子</p></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', { effect: 'fade', loop: true });
+        const audio = document.getElementById('bgm');
+        const btn = document.getElementById('music-btn');
+
+        function start() {
+            document.getElementById('overlay').style.opacity = '0';
+            setTimeout(() => { document.getElementById('overlay').style.display = 'none'; }, 500);
+            audio.play();
+            btn.classList.add('rotating');
+        }
+
+        btn.onclick = function() {
+            if (audio.paused) { audio.play(); btn.classList.add('rotating'); }
+            else { audio.pause(); btn.classList.remove('rotating'); }
+        }
+    </script>
+</body>
+</html>
